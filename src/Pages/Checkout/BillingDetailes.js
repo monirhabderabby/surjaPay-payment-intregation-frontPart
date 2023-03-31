@@ -42,6 +42,9 @@ export const BillingDetailes = () => {
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="postal Code"
                 />
+                <button className="w-full col-span-2 bg-gradient-to-r from-[rgba(0,243,161,.8)] to-[rgba(0,243,161,0.4)] rounded-[4px] hover:bg-[rgba(0,243,161,.7)] h-[40px] duration-150">
+                    Pay Now
+                </button>
             </div>
         </div>
     );
