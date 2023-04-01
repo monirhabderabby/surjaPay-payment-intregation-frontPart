@@ -2,9 +2,17 @@ import React from "react";
 
 // Third party packages
 import { BsCurrencyDollar } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Redux/features/Payment/paymentSlice";
 
 export const ProductCard = ({ product }) => {
+    const dispatch = useDispatch();
     const { title, images, price } = product || {};
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+    };
+
     return (
         <div className="h-[430px] w-full lg:w-[280px] mx-auto rounded-[4px] bg-white shadow-[rgba(0,0,0,0.05)_0px_6px_24px_0px,rgba(0,0,0,0.08)_0px_0px_0px_1px] hover:shadow-[rgba(0,0,0,0.16)_0px_10px_36px_0px,rgba(0,0,0,0.06)_0px_0px_0px_1px] duration-300">
             <div className="relative">
@@ -20,7 +28,10 @@ export const ProductCard = ({ product }) => {
                         </span>
                     </div>
                     <div className="w-full">
-                        <button className="w-full h-[44px] rounded-[4px] bg-pink-500 hover:bg-pink-600 text-white font-Nunito text-[20px] font-medium">
+                        <button
+                            className="w-full h-[44px] rounded-[4px] bg-pink-500 hover:bg-pink-600 text-white font-Nunito text-[20px] font-medium"
+                            onClick={handleAddToCart}
+                        >
                             Add to Cart
                         </button>
                     </div>
