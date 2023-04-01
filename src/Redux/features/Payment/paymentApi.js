@@ -9,7 +9,7 @@ export const paymentApi = apiSlice.injectEndpoints({
         }),
         Pay: builder.mutation({
             query: data => ({
-                url: "http://localhost:4000/payment",
+                url: "https://surja-pay-payment-intregation-server.vercel.app/payment",
                 method: "POST",
                 body: data,
             }),
