@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tick-path {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: tick 0.5s ease-in-out forwards;
+}
+
+@keyframes tick {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

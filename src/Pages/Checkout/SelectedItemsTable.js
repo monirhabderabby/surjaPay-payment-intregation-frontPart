@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 const SelectedItemsTable = () => {
     const [grandTotal, setGrandTotal] = useState(0);
     const carts = useSelector(state => state.payment.cart);
-    console.log(carts);
 
     useEffect(() => {
         const total = carts.reduce((prev, curr) => {

@@ -7,7 +7,14 @@ export const paymentApi = apiSlice.injectEndpoints({
                 url: "https://dummyjson.com/products?limit=10",
             }),
         }),
+        Pay: builder.mutation({
+            query: data => ({
+                url: "http://localhost:4000/payment",
+                method: "POST",
+                body: data,
+            }),
+        }),
     }),
 });
 
-export const { useGetProductsQuery } = paymentApi;
+export const { useGetProductsQuery, usePayMutation } = paymentApi;

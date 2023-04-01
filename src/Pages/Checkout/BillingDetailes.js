@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { usePayMutation } from "../../Redux/features/Payment/paymentApi";
 
 export const BillingDetailes = () => {
+    const navigate = useNavigate();
+    const carts = useSelector(state => state.payment.cart);
+    //API
+    const [Pay, { data, isLoading }] = usePayMutation();
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        const total = carts.reduce((prev, curr) => {
+            return prev + curr.price;
+        }, 0);
+
+        // inject grand total and api called
+        data["amount"] = total;
+        Pay(data);
     };
+
+    useEffect(() => {
+        if (data?.success) {
+            const { checkout_url } = data || {};
+            window.location.replace(checkout_url);
+        }
+    }, [data, navigate]);
+
     return (
         <div className="w-full max-w-[600px] h-auto shadow-[0px_2px_6px_rgba(0,0,0,0.14)] p-[20px] rounded-[4px] bg-white">
             <h3 className="text-[#000000] font-bold font-sans text-[16px]">Billing Address</h3>
@@ -58,7 +79,7 @@ export const BillingDetailes = () => {
                     />
                     <input
                         type="submit"
-                        value="Pay Now"
+                        value={isLoading ? "Processing" : "Pay Now"}
                         className="w-full col-span-2 bg-gradient-to-r from-[rgba(0,243,161,.8)] to-[rgba(0,243,161,0.4)] rounded-[4px] hover:bg-[rgba(0,243,161,.7)] h-[40px] duration-150"
                     />
                 </div>
